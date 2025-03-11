@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Casio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let display = document.getElementById("display");
+        let buttons = document.querySelectorAll("button");
+        let currentInput = "";
+    
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                let value = this.innerText;
+    
+                if (value === "C") {
+                    currentInput = "";
+                    display.innerText = "0";
+                } else if (value === "=") {
+                    try {
+                        currentInput = eval(currentInput);
+                        display.innerText = currentInput;
+                    } catch {
+                        display.innerText = "Error";
+                        currentInput = "";
+                    }
+                } else {
+                    currentInput += value;
+                    display.innerText = currentInput;
+                }
+            });
+        });
+    });
+    </script>
+    
+<body>
+    <div class="background"></div>
+    <div class="content">
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+    
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">÷</button>
+    
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">×</button>
+    
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="operator">−</button>
+    
+        <button class="number zero">0</button>
+        <button class="clear">C</button>
+        <button class="equals">=</button>
+        <button class="operator">+</button>
+    </div>
+    
+    
+    </div>
+
+    <script>
+        let pantalla = document.getElementById("pantalla");
+        let operacion = "";
+        let numeroActual = "";
+
+        function agregarNumero(num) {
+            if (pantalla.innerText === "0") {
+                pantalla.innerText = num;
+            } else {
+                pantalla.innerText += num;
+            }
+            numeroActual += num;
+        }
+
+        function seleccionarOperacion(op) {
+            if (numeroActual === "") return;
+            operacion += numeroActual + " " + op + " ";
+            pantalla.innerText = operacion;
+            numeroActual = "";
+        }
+
+        function calcular() {
+            operacion += numeroActual;
+            pantalla.innerText = eval(operacion);
+            numeroActual = pantalla.innerText;
+            operacion = "";
+        }
+
+        function borrar() {
+            pantalla.innerText = "0";
+            operacion = "";
+            numeroActual = "";
+        }
+    </script>
+
+
+
+</body>
+</html>

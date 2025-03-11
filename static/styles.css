@@ -1,0 +1,116 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(https://img.freepik.com/vector-gratis/formulas-cientificas-dibujadas-mano-pizarra_23-2148496321.jpg);
+    background-size: cover;
+    filter: blur(3px); /* Aplica el desenfoque SOLO al fondo */
+    z-index: -1; /* Lo manda atrás */
+}
+
+.content {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté encima */
+    background: #4f5966; /* Fondo semi-transparente opcional */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.calculator {
+    width: 280px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    display: grid;
+    grid-template-areas: 
+        "display display display display"
+        "num7 num8 num9 div"
+        "num4 num5 num6 mul"
+        "num1 num2 num3 sub"
+        "num0 clear eq add";
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.display {
+    grid-area: display;
+    width: 100%;
+    height: 60px;
+    background-color: #003300;
+    color: #0f0;
+    font-size: 2rem;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+button {
+    width: 100%;
+    height: 50px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+.number {
+    background: linear-gradient(to bottom, #f8f8f8, #c0c0c0);
+}
+
+.operator {
+    background: orange;
+    color: white;
+}
+
+.equals {
+    background: blue;
+    color: white;
+    grid-area: eq;
+}
+
+.clear {
+    background: linear-gradient(to top, #ff3b30, #ff5c5c);
+    color: white;
+}
+
+.button[data-value="7"] { grid-area: num7; }
+.button[data-value="8"] { grid-area: num8; }
+.button[data-value="9"] { grid-area: num9; }
+.button[data-value="/"] { grid-area: div; }
+
+.button[data-value="4"] { grid-area: num4; }
+.button[data-value="5"] { grid-area: num5; }
+.button[data-value="6"] { grid-area: num6; }
+.button[data-value="*"] { grid-area: mul; }
+
+.button[data-value="1"] { grid-area: num1; }
+.button[data-value="2"] { grid-area: num2; }
+.button[data-value="3"] { grid-area: num3; }
+.button[data-value="-"] { grid-area: sub; }
+
+.button[data-value="0"] { grid-area: num0; }
+.button[data-value="C"] { grid-area: clear; }
+.button[data-value="="] { grid-area: eq; }
+.button[data-value="+"] { grid-area: add; }
